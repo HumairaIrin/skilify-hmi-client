@@ -1,0 +1,9 @@
+@media screen and (max-width:768px) {
+    .form-header {
+        width: 100%;
+    }
+
+    .login-methods {
+        width: 90%;
+    }
+}

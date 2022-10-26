@@ -8,6 +8,7 @@
     backdrop-filter: blur(90rem);
     height: 70vh;
     margin-bottom: 5%;
+    margin-top: 2%;
     box-shadow: 7px 8px 20px rgb(25 45 52 / 60%);
 }
 

@@ -9,11 +9,11 @@
 }
 
 .active {
-    background-color: rgb(192, 191, 191);
+    background-color: rgb(201, 198, 198);
 }
 
 .btn-register .active {
-    background-color: white;
+    background-color: rgb(187, 181, 181);
 }
 
 .btn-login .active {

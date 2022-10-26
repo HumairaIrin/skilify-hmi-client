@@ -1,0 +1,25 @@
+.menu li {
+    font-weight: 600;
+}
+
+.navbar {
+    background-color: transparent;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.active {
+    background-color: rgb(192, 191, 191);
+}
+
+.btn-register .active {
+    background-color: white;
+}
+
+.btn-login .active {
+    background-color: rgb(187, 181, 181);
+}
+
+.image {
+    width: 50%;
+}

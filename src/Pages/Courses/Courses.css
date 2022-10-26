@@ -1,0 +1,19 @@
+.courses-page {
+    display: flex;
+    width: 80%;
+    background-color: white;
+    height: auto;
+    background: linear-gradient(to left top, #5b839682, rgb(180 255 230 / 88%));
+    border-radius: 2rem;
+    backdrop-filter: blur(2rem);
+    height: 90vh;
+}
+
+.courses-list {
+    flex: 1;
+    background-color: #fef2ff57;
+}
+
+.courses-card {
+    flex: 3;
+}

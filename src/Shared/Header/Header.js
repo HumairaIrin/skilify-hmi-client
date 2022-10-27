@@ -1,9 +1,18 @@
 import React from 'react';
+import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
-// import navLogo from './image/logo.jpg';
+import { AuthContext } from '../../contexts/AuthProvider';
+import { FaUserAlt } from 'react-icons/fa'
 import './Header.css'
 
 const Header = () => {
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.error(error))
+    }
     return (
         <div className="navbar w-4/5 mx-auto">
             <div className="navbar-start flex-1 my-3">
@@ -16,8 +25,22 @@ const Header = () => {
                         <li><NavLink to='/courses'>Courses</NavLink></li>
                         <li><NavLink to='/faq'>FAQ</NavLink></li>
                         <li><NavLink to='/blog'>Blog</NavLink></li>
-                        <button className="btn btn-outline btn-info"><NavLink to='/register'>Register</NavLink></button>
-                        <button className="btn btn-outline ml-2"><NavLink to='/login'>Login</NavLink></button>
+                        {
+                            user?.uid ?
+                                <div className='flex items-center ml-3'>
+                                    {
+                                        user?.photoURL ?
+                                            <img className='rounded-full user-image' src={user?.photoURL} alt="" />
+                                            : <FaUserAlt />
+                                    }
+                                    <button onClick={handleLogOut} className="btn btn-outline ml-2 btn-login"><NavLink to='/login'>Log Out</NavLink></button>
+                                </div>
+                                :
+                                <>
+                                    <button className="btn btn-outline ml-2 btn-login"><NavLink to='/login'>Login</NavLink></button>
+                                    <button className="btn btn-outline btn-dark ml-2 btn-register"><NavLink to='/register'>Register</NavLink></button>
+                                </>
+                        }
                     </ul>
                 </div>
                 <div className=''> <img src="/image/logo.png" className="image" alt="" /></div>
@@ -28,8 +51,22 @@ const Header = () => {
                     <li><NavLink to='/courses'>Courses</NavLink></li>
                     <li><NavLink to='/faq'>FAQ</NavLink></li>
                     <li><NavLink to='/blog'>Blog</NavLink></li>
-                    <button className="btn btn-outline btn-dark ml-2 btn-register"><NavLink to='/register'>Register</NavLink></button>
-                    <button className="btn btn-outline ml-2 btn-login"><NavLink to='/login'>Login</NavLink></button>
+                    {
+                        user?.uid ?
+                            <div className='flex items-center ml-3'>
+                                {
+                                    user?.photoURL ?
+                                        <img className='rounded-full user-image' src={user?.photoURL} alt="" />
+                                        : <FaUserAlt />
+                                }
+                                <button onClick={handleLogOut} className="btn btn-outline ml-2 btn-login"><NavLink to='/login'>Log Out</NavLink></button>
+                            </div>
+                            :
+                            <>
+                                <button className="btn btn-outline ml-2 btn-login"><NavLink to='/login'>Login</NavLink></button>
+                                <button className="btn btn-outline btn-dark ml-2 btn-register"><NavLink to='/register'>Register</NavLink></button>
+                            </>
+                    }
                 </ul>
             </div>
         </div>

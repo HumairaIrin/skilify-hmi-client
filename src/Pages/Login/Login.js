@@ -3,19 +3,36 @@ import { Link } from "react-router-dom";
 import './Login.css';
 import { FcGoogle } from 'react-icons/fc';
 import { BsGithub } from 'react-icons/bs';
+import { useContext } from 'react';
+import { AuthContext } from '../../contexts/AuthProvider';
+import { useState } from 'react';
 
 const Login = () => {
+    const { login } = useContext(AuthContext);
+    const [error, setError] = useState('');
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password)
+        form.reset();
+
+        login(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user)
+            })
+            .catch(error => {
+                console.error(error);
+                setError(error);
+            })
     }
     return (
         <div className="hero mb-5">
             <div className="hero-content w-4/5 flex-col lg:flex-col">
-                <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                <div className="rounded-2xl flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                     <div className="flex-col text-center">
                         <h1 className="form-header text-5xl text-[#115e59] font-bold mt-4">Login now</h1>
                     </div>
@@ -31,8 +48,9 @@ const Login = () => {
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="text" name='password' placeholder="password" className="input input-bordered" />
+                                <input type="password" name='password' placeholder="password" className="input input-bordered" />
                             </div>
+                            <p><span className='text-red-400'>{error.message}</span></p>
                             <div className="form-control mt-6">
                                 <button className="btn" style={{ backgroundColor: '#115e59' }}>Login</button>
                             </div>

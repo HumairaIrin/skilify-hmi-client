@@ -23,3 +23,8 @@
 .image {
     width: 50%;
 }
+
+.user-image {
+    height: 2rem;
+    width: 2rem;
+}

@@ -1,6 +1,13 @@
 .card {
     height: auto;
     overflow: visible;
+    transition: box-shadow 0.3s ease-in-out;
+    transform: 0.5s;
+}
+
+.card:hover {
+    transform: translate(-7px, -7px);
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
 }
 
 .card-body {

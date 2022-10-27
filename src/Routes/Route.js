@@ -6,6 +6,7 @@ import FAQ from '../Pages/FAQ/FAQ'
 import Blog from '../Pages/Blog/Blog'
 import Register from '../Pages/Register/Register'
 import Login from '../Pages/Login/Login'
+import CourseDetails from "../Pages/CourseDetails/CourseDetails";
 
 export const routes = createBrowserRouter([
     {
@@ -42,6 +43,13 @@ export const routes = createBrowserRouter([
             {
                 path: '/login',
                 element: <Login></Login>
+            },
+            {
+                path: '/courses/:id',
+                element: <CourseDetails></CourseDetails>,
+                loader: ({ params }) => {
+                    return fetch(`https://skilify-hmi-server.vercel.app/courses/${params.id}`)
+                }
             }
         ]
     }

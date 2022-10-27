@@ -1,0 +1,12 @@
+.courses-details-page {
+    display: flex;
+    width: 80%;
+    background-color: white;
+    height: auto;
+    /* height: 90vh; */
+    background: linear-gradient(to left top, #84bad475, rgb(180 255 230 / 88%));
+    border-radius: 2rem;
+    backdrop-filter: blur(2rem);
+    margin-bottom: 5%;
+    box-shadow: 7px 8px 20px rgb(25 45 52 / 60%);
+}

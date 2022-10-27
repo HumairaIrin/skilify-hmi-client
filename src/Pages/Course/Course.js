@@ -10,7 +10,7 @@ const Course = ({ course }) => {
             <figure><img className='rounded-t-lg' src={image} alt="" /></figure>
             <div className="card-body">
                 <h2 className="card-title">{title}</h2>
-                <p>{details.slice(0, 70) + '...'}<Link to={`/courses/${id}`} style={{ color: 'blue' }}>Read More</Link> </p>
+                <p>{details.slice(0, 70) + '...'}<Link to={`/courses/${id}`} style={{ color: 'blue', fontWeight: '600' }}>See Details</Link> </p>
             </div>
             <div className="p-4 flex justify-between">
                 <div>

@@ -16,6 +16,49 @@
     background-color: #fef2ff57;
 }
 
+.list-header {
+    font-size: 25px;
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.l-item {
+    padding: 7%;
+    background-color: white;
+    font-weight: 700;
+    font-size: 15px;
+    border-radius: 10px;
+    margin-top: 4%;
+}
+
 .courses-card {
     flex: 3;
+}
+
+
+@media screen and (min-width:551px) and (max-width: 895px) {
+    .list-header {
+        font-size: 22px;
+    }
+
+    .l-item {
+        font-size: 13px;
+    }
+
+    .courses-list {
+        flex: 1;
+    }
+
+    .courses-card {
+        flex: 2;
+    }
+
+}
+
+@media screen and (max-width: 550px) {
+    .courses-list {
+        display: none;
+    }
 }

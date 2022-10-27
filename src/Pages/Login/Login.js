@@ -1,34 +1,60 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import './Login.css';
 import { FcGoogle } from 'react-icons/fc';
 import { BsGithub } from 'react-icons/bs';
 import { useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthProvider';
 import { useState } from 'react';
+import { GoogleAuthProvider, GithubAuthProvider } from 'firebase/auth';
 
 const Login = () => {
-    const { login } = useContext(AuthContext);
+    const { login, signInWithGoogle, signInWithGithub } = useContext(AuthContext);
     const [error, setError] = useState('');
+    const googleProvider = new GoogleAuthProvider();
+    const githubProvider = new GithubAuthProvider();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
+    const navigate = useNavigate();
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password)
-        form.reset();
+        // console.log(email, password)
 
         login(email, password)
             .then(result => {
                 const user = result.user;
                 console.log(user)
+                form.reset();
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 console.error(error);
                 setError(error);
             })
     }
+
+    const handleSignInWithGoogle = () => {
+        signInWithGoogle(googleProvider)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(error => console.log(error))
+    }
+
+    const handleSignInWithGithub = () => {
+        signInWithGithub(githubProvider)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(error => console.log(error));
+    }
+
     return (
         <div className="hero mb-5">
             <div className="hero-content w-4/5 flex-col lg:flex-col">
@@ -59,11 +85,11 @@ const Login = () => {
                             </label>
                         </div>
                     </form>
-                    <div className='login-methods flex items-center justify-around w-[50%] mx-auto mb-3 border-2 rounded-full p-3'>
+                    <div onClick={handleSignInWithGoogle} style={{ cursor: 'pointer' }} className='login-methods flex items-center justify-around w-[50%] mx-auto mb-3 border-2 rounded-full p-3'>
                         <div className=''><FcGoogle /></div>
                         <h2 className='font-bold'>Login with Google</h2>
                     </div>
-                    <div className='login-methods flex items-center justify-around w-[50%] mx-auto mb-3 border-2 rounded-full p-3'>
+                    <div onClick={handleSignInWithGithub} style={{ cursor: 'pointer' }} className='login-methods flex items-center justify-around w-[50%] mx-auto mb-3 border-2 rounded-full p-3'>
                         <div className=''><BsGithub /></div>
                         <h2 className='font-bold'>Login with Github</h2>
                     </div>

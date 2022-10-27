@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { GrDocumentDownload } from 'react-icons/gr';
 import './Course.css';
 
 const Course = ({ course }) => {
@@ -12,7 +11,7 @@ const Course = ({ course }) => {
                 <h2 className="card-title">{title}</h2>
                 <p>{details.slice(0, 70) + '...'}<Link to={`/courses/${id}`} style={{ color: 'blue', fontWeight: '600' }}>See Details</Link> </p>
             </div>
-            <div className="p-4 flex justify-between">
+            <div className="p-3 flex justify-between">
                 <div>
                     <div className="rating flex align-center">
                         <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400 mr-2" />
@@ -20,7 +19,6 @@ const Course = ({ course }) => {
                     </div>
                     <p className='mt-[3px] font-bold'>${price}</p>
                 </div>
-                <button> <p className='flex items-center justify-between'>PDF <span className='ml-1'><GrDocumentDownload /></span></p></button>
             </div>
         </div>
     );

@@ -1,0 +1,14 @@
+.card {
+    height: auto;
+    overflow: visible;
+}
+
+.card-body {
+    padding: 2%;
+}
+
+@media screen and (max-width: 890px) {
+    .card-title {
+        font-size: 17px;
+    }
+}

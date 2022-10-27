@@ -20,7 +20,7 @@ const Register = () => {
                         <div className="card-body">
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Name</span>
+                                    <span className="label-text">Full Name</span>
                                 </label>
                                 <input type="text" name='name' placeholder="Enter name" className="input input-bordered" />
                             </div>

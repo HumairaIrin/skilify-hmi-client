@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLoaderData, Link } from 'react-router-dom';
+import Course from '../Course/Course';
 import './Courses.css';
 
 const Courses = () => {
@@ -19,7 +20,15 @@ const Courses = () => {
                 }
             </div>
             <div className='courses-card'>
-                <h3>courses card</h3>
+                <h3 className="choose-course-header font-bold text-fuchsia-900">Choose courses you want to join.</h3>
+                <div className='all-cards'>
+                    {
+                        courses.map(c => <Course
+                            key={c.id}
+                            course={c}
+                        ></Course>)
+                    }
+                </div>
             </div>
         </div>
     );

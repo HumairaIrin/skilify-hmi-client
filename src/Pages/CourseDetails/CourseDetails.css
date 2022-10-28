@@ -10,3 +10,11 @@
     margin-bottom: 5%;
     box-shadow: 7px 8px 20px rgb(25 45 52 / 60%);
 }
+
+#dark .details-page-header {
+    color: #44c2b9;
+}
+
+#dark .download-text {
+    color: white;
+}

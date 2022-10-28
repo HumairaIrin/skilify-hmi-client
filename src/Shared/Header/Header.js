@@ -1,19 +1,22 @@
-import React from 'react';
 import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import { FaUserAlt } from 'react-icons/fa';
+import { GrSun } from 'react-icons/gr';
+import { MdDarkMode } from 'react-icons/md';
 import ReactTooltip from "react-tooltip";
 import './Header.css'
 
 const Header = () => {
-    const { user, logOut } = useContext(AuthContext);
+    const { user, logOut, toogleTheme, isDark } = useContext(AuthContext);
 
     const handleLogOut = () => {
         logOut()
             .then(() => { })
             .catch(error => console.error(error))
     }
+
+
     return (
         <div className="navbar w-4/5 mx-auto">
             <div className="navbar-start flex-1 my-3">
@@ -26,6 +29,10 @@ const Header = () => {
                         <li><NavLink to='/courses'>Courses</NavLink></li>
                         <li><NavLink to='/faq'>FAQ</NavLink></li>
                         <li><NavLink to='/blog'>Blog</NavLink></li>
+                        {isDark ?
+                            <p onClick={toogleTheme} style={{ cursor: 'pointer', marginLeft: '7%', marginTop: '4%', height: '1rem' }}><GrSun /></p>
+                            : <p onClick={toogleTheme} style={{ cursor: 'pointer', marginLeft: '7%', marginTop: '4%', height: '1rem' }}><MdDarkMode /></p>
+                        }
                         {
                             user?.uid ?
                                 <div className='flex items-center ml-3'>
@@ -55,6 +62,10 @@ const Header = () => {
                     <li><NavLink to='/courses'>Courses</NavLink></li>
                     <li><NavLink to='/faq'>FAQ</NavLink></li>
                     <li><NavLink to='/blog'>Blog</NavLink></li>
+                    {isDark ?
+                        <p onClick={toogleTheme} style={{ cursor: 'pointer', marginLeft: '3px', marginTop: '4%', height: '1rem' }}><GrSun /></p>
+                        : <p onClick={toogleTheme} style={{ cursor: 'pointer', marginLeft: '3px', marginTop: '4%', height: '1rem' }}><MdDarkMode /></p>
+                    }
                     {user?.uid ?
                         <div className='flex items-center ml-3'>
                             <div data-for="tool" data-tip={user?.displayName} >

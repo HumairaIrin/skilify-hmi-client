@@ -10,6 +10,12 @@ const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [isDark, setIsDark] = useState(false);
+    const theme = isDark ? 'dark' : 'light';
+
+    const toogleTheme = () => {
+        setIsDark(!isDark);
+    }
 
     const createUser = (email, password) => {
         setLoading(true);
@@ -53,7 +59,7 @@ const AuthProvider = ({ children }) => {
 
     }, [])
 
-    const authInfo = { createUser, login, updateUserProfile, user, logOut, loading, signInWithGoogle, signInWithGithub };
+    const authInfo = { createUser, login, updateUserProfile, user, logOut, loading, signInWithGoogle, signInWithGithub, theme, toogleTheme, isDark };
 
     return (
         <AuthContext.Provider value={authInfo}>

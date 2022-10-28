@@ -8,6 +8,11 @@
     justify-content: space-evenly;
 }
 
+#dark .navbar {
+    background-color: #ffffff75;
+    margin-bottom: 3%;
+}
+
 .active {
     background-color: rgb(201, 198, 198);
 }

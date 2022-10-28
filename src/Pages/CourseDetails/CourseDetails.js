@@ -1,6 +1,9 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { GrDocumentDownload } from 'react-icons/gr';
+import ReactTooltip from 'react-tooltip';
+import PDFFile from "../PDFFile/PDFFile";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 import { Link } from 'react-router-dom';
 import './CourseDetails.css';
 
@@ -10,7 +13,16 @@ const CourseDetails = () => {
     return (
         <div className='course-details-page w-[75%] mx-auto my-6'>
             <h2 className='text-[#115e59] font-bold mt-6 text-4xl text-center details-page-header'>Read the course details properly.</h2>
-            <p className='font-semibold text-center mb-4'>You can also download course details from here <button className='mt-3'><GrDocumentDownload /></button></p>
+            <p className='font-semibold text-center mb-4 download-text'>You can also download course details from here
+                {/* <button data-for='tool' data-tip='Download PDF' className='mt-3'><GrDocumentDownload />
+                    <ReactTooltip type='light' id='tool' />
+                </button> */}
+                <PDFDownloadLink document={<PDFFile id={id} />} fileName="Course Details">
+                    {({ loading }) => (loading ? <button>Loading Document...</button> : <button data-for='tool' data-tip='Download PDF' className='mt-3'><GrDocumentDownload />
+                        <ReactTooltip type='light' id='tool' />
+                    </button>)}
+                </PDFDownloadLink>
+            </p>
             <div className=" bg-base-100 shadow-xl">
                 <figure><img className='mx-auto h-[40vh]' src={image} alt="" /></figure>
                 <div className="card-body">

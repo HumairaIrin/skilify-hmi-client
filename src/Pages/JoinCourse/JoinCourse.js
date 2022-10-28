@@ -1,10 +1,15 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
+import { toast } from 'react-hot-toast'
 
+const handlePaymentRequest = () => {
+    toast.success('Your request is on process')
+}
 const JoinCourse = () => {
     const course = useLoaderData();
     const { title } = course;
-    console.log(course)
+
+
     return (
         <div className='bg-white rounded-2xl w-[80%] mx-auto mt-3 mb-10 p-[2%]'>
             <h2 className='text-2xl text-center font-bold text-teal-600'>Ready to join <span className='text-2xl font-bold text-teal-700'> {title}</span></h2>
@@ -34,7 +39,7 @@ const JoinCourse = () => {
                                 </div>
                             </div>
                             <div className="p-2 w-full">
-                                <button className="flex mx-auto text-white bg-teal-600 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Done</button>
+                                <button onClick={handlePaymentRequest} className="flex mx-auto text-white bg-teal-600 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Done</button>
                             </div>
                         </div>
                     </div>

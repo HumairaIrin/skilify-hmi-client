@@ -2,7 +2,8 @@ import React from 'react';
 import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
-import { FaUserAlt } from 'react-icons/fa'
+import { FaUserAlt } from 'react-icons/fa';
+import ReactTooltip from "react-tooltip";
 import './Header.css'
 
 const Header = () => {
@@ -28,11 +29,14 @@ const Header = () => {
                         {
                             user?.uid ?
                                 <div className='flex items-center ml-3'>
-                                    {
-                                        user?.photoURL ?
-                                            <img className='rounded-full user-image' src={user?.photoURL} alt="" />
+                                    <div data-for="tool" data-tip={user?.displayName} >
+                                        {user?.photoURL ?
+                                            <img className='rounded-full user-image'
+                                                src={user?.photoURL} alt="" />
                                             : <FaUserAlt />
-                                    }
+                                        }
+                                        <ReactTooltip id="tool" />
+                                    </div>
                                     <button onClick={handleLogOut} className="btn btn-outline ml-2 btn-login"><NavLink to='/login'>Log Out</NavLink></button>
                                 </div>
                                 :
@@ -51,21 +55,23 @@ const Header = () => {
                     <li><NavLink to='/courses'>Courses</NavLink></li>
                     <li><NavLink to='/faq'>FAQ</NavLink></li>
                     <li><NavLink to='/blog'>Blog</NavLink></li>
-                    {
-                        user?.uid ?
-                            <div className='flex items-center ml-3'>
-                                {
-                                    user?.photoURL ?
-                                        <img className='rounded-full user-image' src={user?.photoURL} alt="" />
-                                        : <FaUserAlt />
+                    {user?.uid ?
+                        <div className='flex items-center ml-3'>
+                            <div data-for="tool" data-tip={user?.displayName} >
+                                {user?.photoURL ?
+                                    <img className='rounded-full user-image'
+                                        src={user?.photoURL} alt="" />
+                                    : <FaUserAlt />
                                 }
-                                <button onClick={handleLogOut} className="btn btn-outline ml-2 btn-login"><NavLink to='/login'>Log Out</NavLink></button>
+                                <ReactTooltip type="light" effect="solid" id="tool" />
                             </div>
-                            :
-                            <>
-                                <button className="btn btn-outline ml-2 btn-login"><NavLink to='/login'>Login</NavLink></button>
-                                <button className="btn btn-outline btn-dark ml-2 btn-register"><NavLink to='/register'>Register</NavLink></button>
-                            </>
+                            <button onClick={handleLogOut} className="btn btn-outline ml-2 btn-login"><NavLink to='/login'>Log Out</NavLink></button>
+                        </div>
+                        :
+                        <>
+                            <button className="btn btn-outline ml-2 btn-login"><NavLink to='/login'>Login</NavLink></button>
+                            <button className="btn btn-outline btn-dark ml-2 btn-register"><NavLink to='/register'>Register</NavLink></button>
+                        </>
                     }
                 </ul>
             </div>
